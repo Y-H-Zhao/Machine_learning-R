@@ -1,0 +1,8 @@
+#install.packages("RODBC")
+library(RODBC)
+odbcDataSources()
+mycon=odbcConnect("local_server2",uid = "sa",pwd = "ncepumath123456")
+data("USArrests")
+sqlSave(mycon,USArrests,rownames = "state",append = T)
+sqlQuery(mycon,"select * from USArrests")
+a<-sqlQuery(mycon,"select * from bdb_testbaoding where car_class=9")
